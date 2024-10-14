@@ -4,3 +4,4 @@ token.json
 cypress/downloads
 cypress/screenshots
 cypress/videos
+cypress/recordedvideos

@@ -6,12 +6,13 @@ module.exports = defineConfig({
   e2e: {
 
     "baseUrl": "https://opensource-demo.orangehrmlive.com",
-    //"video": true,
+    "video": false,
+    "videosFolder": "cypress/recordedvideos",
     //defaultCommandTimeout: 20000, 
     //pageLoadTimeout: 120000,
     // "viewportWidth": 375,
      //"viewportHeight": 667,
-    retries: {openMode:5},
+    retries: {openMode:5, runMode: 1},
     videoCompression: 51,
     //specPattern : "cypress/e2e/**/*.dbsqa.js",
     env:{

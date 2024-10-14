@@ -12,14 +12,7 @@ describe('Verify Login functionality ', () => {
       it('Verify login with valid credentials', () => {
         
 
-        cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-        //cy.get('#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-branding > img').should("be.visible")
-        cy.get("input[placeholder='Username']").type("Admin")
-        cy.get("input[type='password']").type("admin123")
-        cy.get('#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form > div.oxd-form-actions.orangehrm-login-action > button').click()
-
-        cy.url().should("eq", "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
-
+        cy.login()
         //or 
 
         cy.get('#app > div.oxd-layout.orangehrm-upgrade-layout > div.oxd-layout-container > div.oxd-layout-context > div > div:nth-child(1) > div > div.orangehrm-dashboard-widget-header > div > p').should("be.visible")

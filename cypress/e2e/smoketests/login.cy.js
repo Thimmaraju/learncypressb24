@@ -1,19 +1,43 @@
+
+
 describe('Verify Login functionality ', () => {
 
+    const menuitems = {
+
+        menu1 : "Admin",
+        menu2 : "PIM",
+        menu3 : "Leave",
+        menu4 : "Time",
+        menu5 : "Recruitment",
+        menu6 : "My Info",
+        menu7 : "Performance",
+        menu8 : "Dashboard",
+        menu9 : "Directory",
+        menu10: "Maintenance",
+        menu11 : "Claim",
+        menu12 : "Buzz"
+    }
 
     it('Verify Logo visible in login page', () => {
         
-     
+    
          cy.visit('/web/index.php/auth/login')
          cy.get('#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-branding > img').should("be.visible")
 
       })
 
-      it('Verify login with valid credentials', () => {
+      it.only('Verify login with valid credentials', () => {
         
 
-        cy.login()
+        cy.login("Admin", "admin123")
         //or 
+
+        for (let i in menuitems){
+
+            //console.log(menuitems[i])
+
+            cy.contains(menuitems[i]).should("be.visible")
+        }
 
         cy.get('#app > div.oxd-layout.orangehrm-upgrade-layout > div.oxd-layout-container > div.oxd-layout-context > div > div:nth-child(1) > div > div.orangehrm-dashboard-widget-header > div > p').should("be.visible")
 

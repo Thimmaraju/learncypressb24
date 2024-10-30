@@ -1,17 +1,25 @@
+
 import addempdata from "../../fixtures/PIM/addemployee.json"
 
-describe('Verify Add employee Functionalities', () => {
+describe('Verify Add employee Functionalities', function () {
 
-  if(Cypress.browser.name == "firefox"){
 
-  it('Verify add employee with Mandatory deatils', () => {
- 
-      cy.login()
+   beforeEach("login", ()=>{
+
+    cy.login("Admin", "admin123")
     //cy.get('a[href="/web/index.php/pim/viewPimModule"]').click()
     //or 
 
     cy.get('a[href="/web/index.php/pim/viewPimModule"]').click()
     cy.get('a[class="oxd-topbar-body-nav-tab-item"]').eq(1).click()
+
+   })
+
+  if(Cypress.browser.name == "firefox" || "chrome"){
+
+  specify.only('Verify add employee with Mandatory deatils', function () {
+ 
+  
 
     cy.get('input[name="firstName"]').type(addempdata.firstname)
     cy.get('input[name="lastName"]').type(addempdata.lastname)
@@ -25,18 +33,11 @@ describe('Verify Add employee Functionalities', () => {
 
   })
   }
-  if(Cypress.browser.name == "chrome"){
+  if(Cypress.browser.name == "chrome" || "firefox"){
 
-    it('Verify Error massages display for Mandatory fileds', () => {
+    specify.only('Verify Error massages display for Mandatory fileds', () => {
  
-      cy.login()
-      //cy.get('a[href="/web/index.php/pim/viewPimModule"]').click()
-      //or 
-  
-      cy.get('a[href="/web/index.php/pim/viewPimModule"]').click()
-      //cy.contains('Add Employee').click()
-  
-      cy.get('a[class="oxd-topbar-body-nav-tab-item"]').eq(1).click()
+   
   
       cy.get('button[type="submit"]').click()
      

@@ -12,7 +12,7 @@ module.exports = defineConfig({
     pageLoadTimeout: 120000,
     // "viewportWidth": 375,
      //"viewportHeight": 667,
-    retries: {openMode:5, runMode: 1},
+    retries: {openMode:2, runMode: 1},
     videoCompression: 51,
     //specPattern : "cypress/e2e/**/*.dbsqa.js",
     env:{

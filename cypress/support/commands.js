@@ -23,17 +23,17 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-
+import login from "../pages/loginpage"
 Cypress.Commands.add('login', (username, password) => {
 
     cy.visit('/web/index.php/auth/login')
     cy.log("Url Lauch")
     //cy.get('#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-branding > img').should("be.visible")
-    cy.get('input[name="username"]').type(username)
+    cy.get(login.userNameInput()).type(username)
 
     cy.log("Username Typed is "+ username) 
-    cy.get("input[type='password']").type(password)
-    cy.get('#app > div.orangehrm-login-layout > div > div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form > div.oxd-form-actions.orangehrm-login-action > button').click()
+    cy.get(login.passwordInput()).type(password)
+    cy.get(login.loginBtn()).click()
 
     cy.url().should("eq", "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
 

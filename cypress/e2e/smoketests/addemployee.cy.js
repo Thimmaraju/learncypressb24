@@ -1,17 +1,20 @@
 
 import addempdata from "../../fixtures/PIM/addemployee.json"
+import dashboard from "../../pages/dashboardpage"
+
+import addemployee from "../../pages/addemployeepage"
 
 describe('Verify Add employee Functionalities', function () {
 
 
    beforeEach("login", ()=>{
 
-    cy.login("Admin", "admin123")
+    cy.login(Cypress.env("username"), Cypress.env("password"))
     //cy.get('a[href="/web/index.php/pim/viewPimModule"]').click()
     //or 
 
-    cy.get('a[href="/web/index.php/pim/viewPimModule"]').click()
-    cy.get('a[class="oxd-topbar-body-nav-tab-item"]').eq(1).click()
+    cy.get(dashboard.pimMenu()).click()
+    cy.contains(addemployee.addemployeeSubMenu()).click()
 
    })
 
@@ -21,11 +24,11 @@ describe('Verify Add employee Functionalities', function () {
  
   
 
-    cy.get('input[name="firstName"]').type(addempdata.firstname)
-    cy.get('input[name="lastName"]').type(addempdata.lastname)
+    cy.get(addemployee.firstNameInput()).type(addempdata.firstname)
+    cy.get(addemployee.lastNameKInput()).type(addempdata.lastname)
 
-    cy.get('button[type="submit"]').click()
-    cy.contains("Successfully Saved").should("be.visible")
+    cy.get(addemployee.saveBtn()).click()
+    cy.contains(addemployee.successMessage()).should("be.visible")
 
     cy.url().should("include", "web/index.php/pim/viewPersonalDetails/empNumber" )
 
@@ -39,12 +42,12 @@ describe('Verify Add employee Functionalities', function () {
  
    
   
-      cy.get('button[type="submit"]').click()
+      cy.get(addemployee.saveBtn()).click()
      
   
-      cy.get('span[class="oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message"]').eq(0).should("be.visible")
+      cy.get(addemployee.requiredErrorMessage()).eq(0).should("be.visible")
   
-      cy.get('span[class="oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message"]').eq(1).should("be.visible")
+      cy.get(addemployee.requiredErrorMessage()).eq(1).should("be.visible")
     
   
     })

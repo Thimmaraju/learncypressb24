@@ -1,4 +1,5 @@
 const { defineConfig } = require("cypress");
+const {downloadFile} = require('cypress-downloadfile/lib/addPlugin')
 const gmailTester = require("gmail-tester");
 const path = require("path");     
 
@@ -23,6 +24,7 @@ module.exports = defineConfig({
     "watchForFileChanges": false,
     setupNodeEvents(on, config) {
       // implement node event listeners here
+      on('task', {downloadFile})
       on("task", {
         "gmail:get-messages": async (args) => {
           const messages = await gmailTester.get_messages(

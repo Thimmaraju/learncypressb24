@@ -1,5 +1,13 @@
 describe('template spec', () => {
   it('passes', () => {
-    cy.visit('https://example.cypress.io')
+
+    Cypress.on("uncaught:exception", (err, runnable) => {
+  
+      return false;
+    });
+
+    cy.visit('https://cypress.io')
+
+    cy.contains("app quality").scrollIntoView()
   })
 })

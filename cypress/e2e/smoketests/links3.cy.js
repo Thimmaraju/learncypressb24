@@ -17,9 +17,10 @@ describe('Automation - Working With Tabs in webpage', function () {
       cy.origin('https://id.atlassian.com', () => {
 
         cy.get('#username').type("Rajutester2673@gmail.com")
+
       })
 
-  
+
     })
 
 })

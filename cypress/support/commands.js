@@ -29,6 +29,7 @@ import 'cypress-file-upload';
 require('cypress-downloadfile/lib/downloadFileCommand')
 
 import login from "../pages/loginpage"
+import addemployee from '../pages/addemployeepage';
 Cypress.Commands.add('login', (username, password) => {
 
     cy.visit('/web/index.php/auth/login')
@@ -43,3 +44,13 @@ Cypress.Commands.add('login', (username, password) => {
     cy.url().should("eq", "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
 
  })
+
+ Cypress.Commands.add('addemployee', (firstname, lastname) => { 
+
+    cy.get(addemployee.firstNameInput()).type(firstname)
+    cy.get(addemployee.lastNameKInput()).type(lastname)
+
+    cy.get(addemployee.saveBtn()).click()
+    cy.contains(addemployee.successMessage()).should("be.visible")
+
+  })

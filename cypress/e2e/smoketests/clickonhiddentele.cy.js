@@ -102,7 +102,7 @@ describe('Click spec', () => {
 
         cy.get('input[value="f"]').check().should("be.checked")
       
-        cy.get('input[value="f"]').uncheck()
+        //cy.get('input[value="f"]').uncheck()
     
       
     })

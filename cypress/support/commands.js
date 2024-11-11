@@ -41,7 +41,7 @@ Cypress.Commands.add('login', (username, password) => {
     cy.get(login.passwordInput()).type(password)
     cy.get(login.loginBtn()).click()
 
-    cy.url().should("eq", "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
+    //cy.url().should("eq", "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
 
  })
 

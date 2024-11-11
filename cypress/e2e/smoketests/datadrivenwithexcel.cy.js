@@ -1,7 +1,7 @@
 ///<reference types="cypress"/>
 
-import data from "../fixtures/ExceltoJson/user_data.json"
-import login from '../pageObjects/loginpage.po'
+import data from "../../fixtures/ExceltoJson/user_data.json"
+import login from '../../pages/loginpage'
 
 
 describe('Automation - Working With Data driven testing json', function () {
@@ -11,7 +11,7 @@ describe('Automation - Working With Data driven testing json', function () {
         
         it(`Cypress Test Case - for ${data.username}`, function () {
             cy.login(data.username, data.password)
-            cy.contains(login.loginerrorMessage()).should("be.visible")
+            cy.contains(login.loginErrorMessage()).should("be.visible")
 
           })
 

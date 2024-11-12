@@ -1,7 +1,8 @@
 const { defineConfig } = require("cypress");
-const {downloadFile} = require('cypress-downloadfile/lib/addPlugin')
-const gmailTester = require("gmail-tester");
-const path = require("path");     
+const {downloadFile} = require('cypress-downloadfile/lib/addPlugin')  
+const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
+const preprocessor = require("@badeball/cypress-cucumber-preprocessor");
+const createEsbuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esbuild"); 
 
 module.exports = defineConfig({
   reporter: 'cypress-mochawesome-reporter',
@@ -25,6 +26,7 @@ module.exports = defineConfig({
     retries: {openMode:2, runMode: 1},
     //videoCompression: 51,
     //specPattern : "cypress/e2e/**/*.dbsqa.js",
+    specPattern: "**/*.feature",
     env:{
 
           "username" : "Admin",
@@ -35,18 +37,12 @@ module.exports = defineConfig({
       // implement node event listeners here
       require('cypress-mochawesome-reporter/plugin')(on);
       on('task', {downloadFile})
-      on("task", {
-        "gmail:get-messages": async (args) => {
-          const messages = await gmailTester.get_messages(
-            path.resolve(__dirname, "credentials.json"),
-            path.resolve(__dirname, "token.json"),
-            args.options
-          );
-          return messages;
-        }
-      });
-
-
+      on("file:preprocessor",
+        createBundler({
+          plugins: [createEsbuildPlugin.default(config)],
+        }));
+        preprocessor.addCucumberPreprocessorPlugin(on, config);
+        return config;
     },
   },
 });

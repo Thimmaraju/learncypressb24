@@ -26,11 +26,13 @@ module.exports = defineConfig({
     retries: {openMode:2, runMode: 1},
     //videoCompression: 51,
     //specPattern : "cypress/e2e/**/*.dbsqa.js",
-    specPattern: "**/*.feature",
+    //specPattern: "**/*.feature",
     env:{
 
           "username" : "Admin",
-          "password" : "admin123"
+          "password" : "admin123",
+          "cookievalue" : "orangehrm=t8nk9ker5anmvuaomri6nsq8ob",
+          "sample" : ""
     },
     "watchForFileChanges": false,
     setupNodeEvents(on, config) {
